@@ -13,3 +13,11 @@ export { Link } from "./extensions";
 export { CodeBlock } from "./extensions/code-block";
 export { TwitterEmbed } from "./controls/rte-twitter-control";
 export { YouTubeEmbed } from "./controls/rte-youtube-control";
+export { FigmaEmbed } from "./controls/rte-figma-control";
+export { SpotifyEmbed } from "./controls/rte-spotify-control";
+export { VimeoEmbed } from "./controls/rte-vimeo-control";
+export { LoomEmbed } from "./controls/rte-loom-control";
+export {
+  CodeSandboxEmbed,
+  CodeSandBoxEmbed,
+} from "./controls/rte-codesandbox-control";

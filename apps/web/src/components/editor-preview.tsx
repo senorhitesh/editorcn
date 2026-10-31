@@ -7,6 +7,11 @@ import {
   TwitterEmbed,
   YouTubeEmbed,
   CodeBlock,
+  FigmaEmbed,
+  SpotifyEmbed,
+  VimeoEmbed,
+  LoomEmbed,
+  CodeSandboxEmbed,
 } from "@editorcn/editor";
 import type { RichTextEditorVariant } from "@editorcn/editor";
 import {
@@ -14,9 +19,6 @@ import {
   ImagePlaceholder,
 } from "@editorcn/extensions/image-placeholder";
 import { ImagePlaceholderToolbar } from "@editorcn/extensions/image-placeholder-toolbar";
-import { Markdown } from "@editorcn/extensions/markdown";
-import { MarkdownToolbar } from "@editorcn/extensions/markdown-toolbar";
-import { Mention } from "@editorcn/extensions/mention";
 import { Table } from "@editorcn/extensions/table";
 import { TableHoverOverlay } from "@editorcn/extensions/table-hover-overlay";
 import { TableToolbar } from "@editorcn/extensions/table-toolbar";
@@ -32,11 +34,8 @@ import { Underline } from "@tiptap/extension-underline";
 import { useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
 
-import { searchPeople } from "@/lib/mention-people";
-
 import "@editorcn/editor/style.css";
 import "@editorcn/extensions/image-placeholder/style.css";
-import "@editorcn/extensions/mention/style.css";
 import "@editorcn/extensions/table/style.css";
 import "@editorcn/extensions/ui/style.css";
 
@@ -95,8 +94,6 @@ const DEMO_CONTENT = `
   <li>Second ordered item with a <a href="#">link</a></li>
   <li>Third ordered item</li>
 </ol>
-<h2>Mentions</h2>
-<p>Type <code>@</code> to mention someone, like <span data-type="mention" data-id="3" data-label="Grace Hopper"></span>. The picker filters as you type and inserts a mention with a stable id.</p>
 <h2>Blockquote &amp; Code</h2>
 <blockquote><p>A well-placed blockquote adds authority. The left border uses your theme's border color.</p></blockquote>
 <p>For longer code snippets, use a <strong>code block</strong>:</p>
@@ -162,6 +159,11 @@ export const EditorPreview = ({
       Superscript,
       TwitterEmbed,
       YouTubeEmbed,
+      FigmaEmbed,
+      SpotifyEmbed,
+      VimeoEmbed,
+      LoomEmbed,
+      CodeSandboxEmbed,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Placeholder.configure({ placeholder: "Start typing..." }),
       CharacterCount,
@@ -169,12 +171,6 @@ export const EditorPreview = ({
       Table.configure({ resizable: true }),
       ResizableImage,
       ImagePlaceholder,
-      Markdown.configure({ pasteMarkdown: true }),
-      Mention.configure({
-        debounce: 0,
-        heading: "People",
-        items: searchPeople,
-      }),
     ],
     immediatelyRender: false,
     shouldRerenderOnTransaction: false,
@@ -228,11 +224,15 @@ export const EditorPreview = ({
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.YouTubeEmbed />
             <RichTextEditor.TwitterEmbed />
+            <RichTextEditor.FigmaEmbed />
+            <RichTextEditor.SpotifyEmbed />
+            <RichTextEditor.VimeoEmbed />
+            <RichTextEditor.LoomEmbed />
+            <RichTextEditor.CodeSandboxEmbed />
           </RichTextEditor.ControlsGroup>
           <RichTextEditor.ControlsGroup>
             <ImagePlaceholderToolbar editor={editor} />
             <TableToolbar editor={editor} />
-            <MarkdownToolbar editor={editor} filename="editorcn.md" />
           </RichTextEditor.ControlsGroup>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.Undo />

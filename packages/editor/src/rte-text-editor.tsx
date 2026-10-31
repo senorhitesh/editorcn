@@ -3,12 +3,20 @@ import { useEffect, useMemo, useState } from "react";
 
 import { BubbleMenu } from "./bubble-menu/index";
 import {
+  CodeSandboxEmbedControl,
+  CodeSandBoxEmbedControl,
+} from "./controls/rte-codesandbox-control";
+import {
   RichTextEditorControl,
   RichTextEditorTooltip,
 } from "./controls/rte-control";
 import * as controls from "./controls/rte-controls";
+import { FigmaEmbedControl } from "./controls/rte-figma-control";
 import { LinkControl } from "./controls/rte-link-control";
+import { LoomEmbedControl } from "./controls/rte-loom-control";
+import { SpotifyEmbedControl } from "./controls/rte-spotify-control";
 import { TwitterEmbedControl } from "./controls/rte-twitter-control";
+import { VimeoEmbedControl } from "./controls/rte-vimeo-control";
 import { YouTubeEmbedControl } from "./controls/rte-youtube-control";
 import { DEFAULT_ICONS } from "./icons";
 import { DEFAULT_LABELS } from "./labels";
@@ -88,9 +96,12 @@ export const RichTextEditor = Object.assign(RichTextEditorRoot, {
   ClearFormatting: controls.ClearFormattingControl,
   Code: controls.CodeControl,
   CodeBlock: controls.CodeBlockControl,
+  CodeSandBoxEmbed: CodeSandBoxEmbedControl,
+  CodeSandboxEmbed: CodeSandboxEmbedControl,
   Content,
   Control: RichTextEditorControl,
   ControlsGroup,
+  FigmaEmbed: FigmaEmbedControl,
   Footer,
   H1: controls.H1Control,
   H2: controls.H2Control,
@@ -102,8 +113,10 @@ export const RichTextEditor = Object.assign(RichTextEditorRoot, {
   Hr: controls.HrControl,
   Italic: controls.ItalicControl,
   Link: LinkControl,
+  LoomEmbed: LoomEmbedControl,
   OrderedList: controls.OrderedListControl,
   Redo: controls.RedoControl,
+  SpotifyEmbed: SpotifyEmbedControl,
   Strikethrough: controls.StrikethroughControl,
   Subscript: controls.SubscriptControl,
   Superscript: controls.SuperscriptControl,
@@ -113,5 +126,6 @@ export const RichTextEditor = Object.assign(RichTextEditorRoot, {
   Underline: controls.UnderlineControl,
   Undo: controls.UndoControl,
   Unlink: controls.UnlinkControl,
+  VimeoEmbed: VimeoEmbedControl,
   YouTubeEmbed: YouTubeEmbedControl,
 });

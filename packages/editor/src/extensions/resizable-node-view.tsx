@@ -20,6 +20,7 @@ interface ResizableNodeViewProps extends NodeViewProps {
   videoSrc?: string;
   watchUrl?: string;
   onSrcChange?: (src: string) => void;
+  disableVerticalResize?: boolean;
 }
 
 type ResizeDirection = "left" | "right" | "bottom" | "corner-bl" | "corner-br";
@@ -183,6 +184,7 @@ export const ResizableNodeView = ({
   videoSrc,
   watchUrl,
   onSrcChange,
+  disableVerticalResize = false,
 }: ResizableNodeViewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isEditingUrl, setIsEditingUrl] = useState(false);
@@ -369,7 +371,9 @@ export const ResizableNodeView = ({
       Math.max(minWidth, Math.min(maxWidth, (editorW * percent) / 100))
     );
     updateAttributes({
-      height: Math.round(targetW / aspectRatio),
+      ...(disableVerticalResize || !lockAspect
+        ? {}
+        : { height: Math.round(targetW / aspectRatio) }),
       width: targetW,
     });
   };
@@ -441,21 +445,25 @@ export const ResizableNodeView = ({
               onMouseDown={(e) => handleMouseDown(e, "right")}
               role="presentation"
             />
-            <div
-              className="rte-resize-handle rte-resize-handle--bottom"
-              onMouseDown={(e) => handleMouseDown(e, "bottom")}
-              role="presentation"
-            />
-            <div
-              className="rte-resize-handle rte-resize-handle--corner rte-resize-handle--corner-bl"
-              onMouseDown={(e) => handleMouseDown(e, "corner-bl")}
-              role="presentation"
-            />
-            <div
-              className="rte-resize-handle rte-resize-handle--corner rte-resize-handle--corner-br"
-              onMouseDown={(e) => handleMouseDown(e, "corner-br")}
-              role="presentation"
-            />
+            {!disableVerticalResize && (
+              <>
+                <div
+                  className="rte-resize-handle rte-resize-handle--bottom"
+                  onMouseDown={(e) => handleMouseDown(e, "bottom")}
+                  role="presentation"
+                />
+                <div
+                  className="rte-resize-handle rte-resize-handle--corner rte-resize-handle--corner-bl"
+                  onMouseDown={(e) => handleMouseDown(e, "corner-bl")}
+                  role="presentation"
+                />
+                <div
+                  className="rte-resize-handle rte-resize-handle--corner rte-resize-handle--corner-br"
+                  onMouseDown={(e) => handleMouseDown(e, "corner-br")}
+                  role="presentation"
+                />
+              </>
+            )}
           </>
         )}
       </div>
